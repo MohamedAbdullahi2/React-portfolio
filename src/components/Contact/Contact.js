@@ -1,19 +1,125 @@
-import React from 'react'
+import React, { useState } from "react";
 
-const Contact = () => {
+// Here we import a helper function that will check if the email is valid
+import { validateEmail } from "../../utils/helpers";
+
+function Contact() {
+  // Create state variables for the fields in the form
+  // We are also setting their initial values to an empty string
+  const [email, setEmail] = useState("");
+  const [userName, setUserName] = useState("");
+  const [message, setMessage] = useState("");
+  const [errorMessage, setErrorMessage] = useState("");
+
+  const handleInputChange = (e) => {
+    // Getting the value and name of the input which triggered the change
+    const { target } = e;
+    const inputType = target.name;
+    const inputValue = target.value;
+
+    // Based on the input type, we set the state of either email, username, and message
+    if (inputType === "email") {
+      setEmail(inputValue);
+    } else if (inputType === "userName") {
+      setUserName(inputValue);
+    } else {
+      setMessage(inputValue);
+    }
+  };
+
+  const handleFormSubmit = (e) => {
+    // Preventing the default behavior of the form submit (which is to refresh the page)
+    e.preventDefault();
+
+    // First we check to see if the email is not valid or if the userName is empty. If so we set an error message to be displayed on the page.
+    if (!validateEmail(email) || !userName) {
+      setErrorMessage("Email or Name is invalid");
+      // We want to exit out of this code block if something is wrong so that the user can correct it
+      return;
+      // Then we check to see if the message is not valid. If so, we set an error message regarding the message.
+    }
+
+    if (!setMessage(message)) {
+      setErrorMessage(`Message is required.`);
+      return;
+    }
+
+    // If everything goes according to plan, we want to clear out the input after a successful submission.
+    setUserName("");
+    setMessage("");
+    setEmail("");
+  };
+
   return (
-    <div name='contact' className='w-full h-screen bg-[#0a192f] flex justify-center items-center p-4'>
-        <div className='flex flex-col max-w-[600px] w-full'>
-            <div className='pb-8 flex flex-col justify-center w-full h-full items-center'>
-                <p className='text-4xl font-bold inline border-b-4 border-cyan-500 text-gray-300'>Contact</p>
-                <p className='text-gray-300 py-4'>Send me a message</p>
-            </div>
-            <input className='bg-[#ccd6f6] p-2' type="text" placeholder='Name' name='name' />
-            <input className='my-4 p-2 bg-[#ccd6f6]' type="email" placeholder='Email' name='email' />
-            <textarea className='bg-[#ccd6f6] p-2' name="message" rows="10" placeholder='Message'></textarea>
-            <button className='text-white border-2 hover:bg-cyan-500 hover:border-cyan-500 px-4 py-3 my-8 mx-auto flex items-center'>Let's Collaborate</button>
+    <section id="reach-out" className="contact">
+      <div className="flex-row">
+        <h2 className="section-title secondary-border">Get in touch with me</h2>
+      </div>
+
+      <div className="contact-info">
+        <div>
+          <h3>{userName}</h3>
+          <p>Get in touch with me</p>
+          <address>
+            Ottawa, ON <br />
+            P: <a href="tel:613.700.6268">613-700-6268</a>
+            <br />
+            E:{" "}
+            <a href="mailto://Moh.hassan2013@gmail.com">
+              Moh.hassan2013@gmail.com
+            </a>
+          </address>
         </div>
-    </div>
-  )
+
+        {/* contact form section  */}
+        <div className="contact-form">
+          <h3>Contact Me</h3>
+          <form className="form">
+            {/* Name */}
+            <label for="contact-name">Your Name</label>
+            <input
+              value={userName}
+              name="userName"
+              onChange={handleInputChange}
+              type="text"
+              id="contact-name"
+              placeholder="Your Name"
+            />
+
+            {/* Email */}
+            <label for="contact-email">Your Email</label>
+            <input
+              value={email}
+              name="email"
+              onChange={handleInputChange}
+              type="email"
+              id="contact-email"
+              placeholder="Your Email"
+            />
+
+            {/* Message */}
+            <label for="contact-message">Message</label>
+            <textarea
+              value={message}
+              name="message"
+              onChange={handleInputChange}
+              type="message"
+              id="contact-message"
+              placeholder="Your Message"
+            />
+            <button type="button" onClick={handleFormSubmit}>
+              Submit
+            </button>
+          </form>
+        </div>
+        {errorMessage && (
+          <div>
+            <p className="error-text">{errorMessage}</p>
+          </div>
+        )}
+      </div>
+    </section>
+  );
 }
-export default Contact
+
+export default Contact;
