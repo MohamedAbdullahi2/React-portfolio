@@ -1,9 +1,4 @@
 # React-portfolio
-=============================================================
-             REACT.JS PORTFOLIO README
-=============================================================
-
-=============================================================
 
 This React.js-based portfolio showcases my work and includes an About, Portfolio, Contact, and Resume page. Here's a brief overview of each section:
 
