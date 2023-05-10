@@ -36,7 +36,7 @@ If you have any suggestions or improvements for the app, feel free to submit a p
 
 Deployment URL
 --------------
-[Insert deployment URL here]
+[https://mohamedabdullahi2.github.io/React-portfolio/]
 
 License
 -------
