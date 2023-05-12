@@ -22,6 +22,11 @@ This React.js-based portfolio showcases my work and includes an About, Portfolio
                             |-------|
                             | The footer includes links to my Github and LinkedIn profiles. |
 
+
+
+<img width="904" alt="image" src="https://github.com/MohamedAbdullahi2/React-portfolio/assets/118404373/e8555011-21b7-43d3-9b28-3aebea394443">
+
+
 Getting Started
 ---------------
 To get started with the app, you can clone this repository and run the following commands:
